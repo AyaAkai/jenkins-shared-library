@@ -4,24 +4,23 @@ def call() {
 
         environment {
             XYZ = 'ITI ITI ITI'
+            IMAGE_NAME = 'ayaahmed123/jenkins-library'
         }
 
         stages {
             stage('Build Docker Image') {
                 steps {
-                    script {
-                        buildDockerImage()
-                    }
+                    echo 'Building Docker image'
+                    buildDockerImage(env.IMAGE_NAME)
                 }
             }
+
             stage('Push Docker Image') {
                 steps {
-                    script {
-                        pushDockerImage()
-                    }
+                    echo 'Pushing Docker image to DockerHub'
+                    pushDockerImage(env.IMAGE_NAME)
                 }
             }
         }
     }
-    evaluate(script)
 }
