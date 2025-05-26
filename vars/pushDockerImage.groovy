@@ -1,7 +1,10 @@
 def call(String imageName) {
-    withCredentials([string(credentialsId: 'dockerhub-cred', variable: 'dockerhub-cred')]) {
-        sh "echo \$DOCKER_PASSWORD | docker login -u ayaahmed123 --password-stdin"
+    withCredentials([
+        usernamePassword(credentialsId: 'dockerhub-cred', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')
+    ]) {
+        sh "echo \$DOCKER_PASSWORD | docker login -u \$DOCKER_USER --password-stdin"
         sh "docker push ${imageName}"
     }
 }
+
 
