@@ -7,13 +7,13 @@ def call() {
             IMAGE_NAME = 'ayaahmed123/jenkins-library'
         }
 
-        stages {
-            stage('Build Docker Image') {
-                steps {
-                    echo 'Building Docker image'
-                    buildDockerImage(env.IMAGE_NAME)
-                }
+       stages {
+        stage('Build Java & Docker') {
+            steps {
+                echo 'Building Java app and Docker image...'
+                buildJavaApp(env.IMAGE_NAME)
             }
+        }
 
             stage('Push Docker Image') {
                 steps {
