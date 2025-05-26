@@ -23,4 +23,5 @@ def call() {
             }
         }
     }
+    evaluate(script)
 }
